@@ -49,6 +49,28 @@ def upload():
     return render_template('upload.html', form=form)
 
 
+def get_uploaded_images():
+    rootdir=os.getcwd()
+    upload_path= rootdir + '/uploads'
+    upload_lst=[]
+    for subdir, dirs, files in os.walk(upload_path):
+        for file in files:
+            if file.endswith(('.png', '.jpg', '.jpeg', '.PNG', '.JPG', '.JPEG')):
+                upload_lst.append(file)
+    return upload_lst
+
+@app.route('/uploads/<filename>')
+def get_image(filename):
+    if not session.get('logged_in'):
+        abort(401)
+    return send_from_directory(os.path.join(os.getcwd(),app.config['UPLOAD_FOLDER']), filename)
+
+@app.route('/files')
+def files():
+   
+    files=get_uploaded_images()
+    return render_template('files.html', file_list=files)
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     error = None
