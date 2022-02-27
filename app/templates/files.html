@@ -6,10 +6,12 @@
 {%include 'flash_messages.html' %}
 
 <ul>
-    {% for file in files %}
-        <div>
-            <li><img src="{{url_for('get_image', filename=files)}}"/></li>
+    <div id="images">
+    {% for file in file_list %}
+        <div class="image">
+            <li><img src="{{url_for('get_image', filename=file)}}"/></li>
         </div>
     {% endfor %}
+    </div>
 </ul>
 {% endblock %}

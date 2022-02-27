@@ -1,0 +1,16 @@
+#images{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+    align-content: space-between;
+
+}
+img{
+    height:250px;
+    width:250px;
+}
+ul{
+    list-style-type: none;
+}
